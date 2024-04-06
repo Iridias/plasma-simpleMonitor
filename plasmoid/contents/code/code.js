@@ -21,19 +21,6 @@
 
 var logos = ["tux", "slackware", "ubuntu", "kubuntu", "opensuse", "manjaro", "arch", "fedora", "debian"]
 
-var k10Cores = new Set();
-
-function k10CoreIndex(k10Core) {
-    k10Cores.add(k10Core);
-    let i = 0;
-    for(let item of k10Cores.values()) {
-        if(item == k10Core) {
-            return i;
-        }
-        ++i;
-    }
-    return -1;
-}
 
 var k10Cores = new Set();
 
@@ -48,6 +35,68 @@ function k10CoreIndex(k10Core) {
     }
     return -1;
 }
+
+var coreStats = new Map();
+
+function createCoreStat(line) {
+    return new CoreStat(line);
+}
+
+function CoreStat(line) {
+    var fields = line.split(' ');
+    
+    this.coreName = fields[0];
+    this.coreId = this.coreName.substring(3);
+    this.idleTicks = parseInt(fields[4]);
+    this.usageTicks = parseInt(fields[1]) + parseInt(fields[2]) + parseInt(fields[3]);
+    this.ticks = this.idleTicks + this.usageTicks;
+
+    this.calcUsage = function(coreStat2) {
+        var combined = this.ticks - coreStat2.ticks - this.idleTicks + coreStat2.idleTicks;
+        var total = this.ticks - coreStat2.ticks;
+        return (100 * combined / total);
+    }
+}
+
+
+function isMatchCpuTempSensor(str) {
+    if(str.match("coretemp-isa-\\d+") ||
+            str.match("k\\d+temp-pci-.+") ||
+            str.match("atk\\d+-acpi-\\d")) {
+        return true;
+    }
+    return false;
+}
+
+function isAmdCpu(str) {
+    return str.match("k\\d+temp-pci-.+");
+}
+
+function isMatchCpuCore(str) {
+    if(str.match("Core \\d+") || str.match("Tctl") || str.match("Tccd\\d+") || str.match("Tdie")) {
+        return true;
+    }
+    return false;
+}
+
+function determineCurrentCpuIndex(key, k, entry) {
+    if(isAmdCpu(key)) {
+        return k10CoreIndex(entry)
+    }
+    if(key.match("atk\\d+-acpi-\\d")) {
+        return key.replace(/^atk\\d+-acpi-/i, "")
+    }
+    return k.split(' ')[1];
+}
+
+function determineCpuCoreLabel(key, k) {
+    if(isAmdCpu(key)) {
+        return k;
+    }
+    return "";
+}
+
+
 
 function getStandardLogo(logoId, distroName) {
     if (typeof distroName === 'undefined')

@@ -17,18 +17,18 @@
  * along with plasma-simpleMonitor.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-import QtQuick 2.0
-import org.kde.plasma.configuration 2.0
+import QtQuick 2.15
+import org.kde.plasma.configuration
 
 ConfigModel {
     ConfigCategory {
         name: i18n('General')
-        icon: Qt.resolvedUrl('../images/simpleMonitor.svg').replace('file://', '')
+        icon: Qt.resolvedUrl('../images/simpleMonitor.svg')
         source: 'config/ConfigGeneral.qml'
     }
     ConfigCategory {
         name: i18n('Skins')
-        icon: Qt.resolvedUrl('../images/simpleMonitor-skins.svg').replace('file://', '')
+        icon: Qt.resolvedUrl('../images/simpleMonitor-skins.svg')
         source: 'config/ConfigSkins.qml'
     }
     ConfigCategory {

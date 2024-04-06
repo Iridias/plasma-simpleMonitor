@@ -3,6 +3,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [Unreleased] - 2024-04-06
+    ### Changed
+    - Migrated to Plasma 6
+    - Replaced "systemmonitor" DataSource/engine - not available anymore
+
+    ### known issues
+    - resizing doesn't work ATM
+    - only Celsius is supported for temperatures ATM
+    - uses "executable" dataengine, deemed insecure as of lately
+    - still uses plasma5support library
+    - needs a proper rewrite, but not until this bug is fixed: https://bugs.kde.org/show_bug.cgi?id=452763
+
 ## [Unreleased] - 2017-xx-xx
     ### Added
     - Turkish translation.

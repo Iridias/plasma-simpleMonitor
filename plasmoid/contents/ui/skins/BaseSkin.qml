@@ -17,7 +17,7 @@
  * along with plasma-simpleMonitor.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-import QtQuick 2.0
+import QtQuick 2.15
 
 Item {
     property int bgColor:           confEngine.bgColor
@@ -41,6 +41,7 @@ Item {
 
     property double memFree
     property double memTotal
+    property double memAvailable
     property double memUsed
     property double memBuffers
     property double memCached

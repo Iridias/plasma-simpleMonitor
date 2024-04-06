@@ -17,7 +17,7 @@
  * along with plasma-simpleMonitor.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-import QtQuick 2.0
+import QtQuick 2.15
 
 ListView {
     id: gpuTempList
@@ -26,8 +26,8 @@ ListView {
     LayoutMirroring.enabled: direction === Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
 
-    implicitHeight: count * 25 * units.devicePixelRatio
-    implicitWidth: 100 * units.devicePixelRatio
+    implicitHeight: count * 25
+    implicitWidth: 100
 
     interactive: false
 
@@ -41,10 +41,10 @@ ListView {
 
     delegate: Item {
         id: gpuListTemp
-        implicitHeight: 25 * units.devicePixelRatio
+        implicitHeight: 25
         implicitWidth: gpuLabel.implicitWidth + unitLabel.implicitWidth
         width: parent.width
-        height: (20 + indicatorHeight) * units.devicePixelRatio
+        height: (20 + indicatorHeight)
         visible: showGpuTemp
         Text {
             id: gpuLabel
@@ -66,18 +66,18 @@ ListView {
 
         Rectangle {
             id: rectValue
-            height: indicatorHeight * units.devicePixelRatio
+            height: indicatorHeight
             width: Math.round(val/gpuTempList.maxTemp*parent.width)
             color: if (Math.round(val) >= coreTempList.criticalTemp) "red"
                    else if (Math.round(val) >= gpuTempList.highTemp) "#ffac2a"
                    else "#85a9ff"
             anchors.top: gpuLabel.bottom
             anchors.right: parent.right
-            anchors.topMargin: units.devicePixelRatio
+            anchors.topMargin: 1
         }
         ListView.onAdd: SequentialAnimation {
             PropertyAction { target: gpuListTemp; property: "height"; value: 0 }
-            NumberAnimation { target: gpuListTemp; property: "height"; to: (20 + indicatorHeight) * units.devicePixelRatio; duration: 250; easing.type: Easing.InOutQuad }
+            NumberAnimation { target: gpuListTemp; property: "height"; to: (20 + indicatorHeight); duration: 250; easing.type: Easing.InOutQuad }
         }
     }
 

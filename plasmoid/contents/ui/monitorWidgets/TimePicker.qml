@@ -17,7 +17,7 @@
  * along with plasma-simpleMonitor.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-import QtQuick 2.0
+import QtQuick 2.15
 
 Item {
     id: timePicker
@@ -26,7 +26,7 @@ Item {
     LayoutMirroring.childrenInherit: true
 
     implicitWidth: secs.x + secs.width
-    implicitHeight: hour.implicitHeight - 11 * units.devicePixelRatio
+    implicitHeight: hour.implicitHeight - 11
 
     FontLoader {
         id: playRegular
@@ -50,7 +50,7 @@ Item {
         id: hour
         anchors.left: parent.left
         anchors.bottom: parent.bottom
-        height: 44 * units.devicePixelRatio
+        height: 44
         text: "00:"
         font {
             family: playRegular.name
@@ -62,7 +62,7 @@ Item {
         id: mins
         anchors.left: hour.right
         anchors.bottom: parent.bottom
-        height: 29 * units.devicePixelRatio
+        height: 29
         text: "00:"
         font {
             family: playRegular.name
@@ -74,7 +74,7 @@ Item {
         id: secs
         anchors.left: mins.right
         anchors.bottom: parent.bottom
-        height: 21 * units.devicePixelRatio
+        height: 21
         text: "00"
         font {
             family: playRegular.name

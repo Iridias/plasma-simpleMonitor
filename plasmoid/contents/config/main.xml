@@ -78,7 +78,7 @@
         </entry>
         <entry name="cpuCritTemp" type="Int">
             <label>CPU Critical Temperature</label>
-            <default>70</default>
+            <default>90</default>
         </entry>
 
         <!-- Style Section -->

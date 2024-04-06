@@ -17,7 +17,7 @@
  * along with plasma-simpleMonitor.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-import QtQuick 2.0
+import QtQuick 2.15
 
 ListView {
     id: cpuListView
@@ -28,7 +28,7 @@ ListView {
 
     property color progressColor: "#993de515"
     
-    implicitWidth: 100 * units.devicePixelRatio
+    implicitWidth: 100
     implicitHeight: childrenRect.height
 
     model: cpuModel
@@ -46,13 +46,13 @@ ListView {
     delegate: Item {
         id: itemElement
         width: cpuListView.width
-        height: cpuListItem.height + units.devicePixelRatio
+        height: cpuListItem.height + 1
         Column {
             id: cpuListItem
             width: parent.width
-            height: (20 + indicatorHeight) * units.devicePixelRatio
+            height: (20 + indicatorHeight)
             Row {
-                spacing: 5 * units.devicePixelRatio
+                spacing: 5
                 anchors.left: parent.left
                 Text {
                     id: cpuLabel
@@ -76,7 +76,7 @@ ListView {
             }
             Item {
                 id: progressBar
-                height: 10 * units.devicePixelRatio
+                height: 10
                 //clip: true
                 width: parent.width
                 Rectangle {
@@ -166,9 +166,9 @@ ListView {
                     }
                 }
                 Rectangle {
-                    height: progressBar.height + 4 * units.devicePixelRatio
-                    width: 5 * units.devicePixelRatio
-                    radius: 2 * units.devicePixelRatio
+                    height: progressBar.height + 4
+                    width: 5
+                    radius: 2
                     anchors.left: rectValue.right
                     anchors.verticalCenter: parent.verticalCenter
                     color: "#88ffffff"
@@ -190,7 +190,7 @@ ListView {
 
         ListView.onAdd: SequentialAnimation {
             PropertyAction { target: cpuListItem; property: "height"; value: 0 }
-            NumberAnimation { target: cpuListItem; property: "height"; to: 30 * units.devicePixelRatio; duration: 250; easing.type: Easing.InOutQuad }
+            NumberAnimation { target: cpuListItem; property: "height"; to: 30; duration: 250; easing.type: Easing.InOutQuad }
         }
     }
 

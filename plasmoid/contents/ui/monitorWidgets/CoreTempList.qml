@@ -17,7 +17,7 @@
  * along with plasma-simpleMonitor.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-import QtQuick 2.0
+import QtQuick 2.15
 
 ListView {
     id: coreTempList
@@ -26,8 +26,8 @@ ListView {
     LayoutMirroring.enabled: direction === Qt.RightToLeft
     LayoutMirroring.childrenInherit: true
 
-    implicitHeight: count * 25 * units.devicePixelRatio
-    implicitWidth: 100 * units.devicePixelRatio
+    implicitHeight: count * 25
+    implicitWidth: 100
 
     interactive: false
 
@@ -41,9 +41,9 @@ ListView {
 
     delegate: Item {
         id: coreListTemp
-        implicitHeight: 25 * units.devicePixelRatio
+        implicitHeight: 25
         width: coreTempList.width
-        height: (20 + indicatorHeight) * units.devicePixelRatio
+        height: (20 + indicatorHeight)
         Text {
             id: coreLabel
             anchors.left: parent.left
@@ -64,18 +64,18 @@ ListView {
 
         Rectangle {
             id: rectValue
-            height: 11 * units.devicePixelRatio
+            height: 11
             width: Math.floor(val/coreTempList.criticalTemp*parent.width)
             color: if (val >= coreTempList.criticalTemp) "red"
                    else if (val >= coreTempList.highTemp) "#ffac2a"
                    else "#85a9ff"
             anchors.top: coreLabel.bottom
             anchors.right: parent.right
-            anchors.topMargin: units.devicePixelRatio
+            anchors.topMargin: 1
         }
         ListView.onAdd: SequentialAnimation {
             PropertyAction { target: coreListTemp; property: "height"; value: 0 }
-            NumberAnimation { target: coreListTemp; property: "height"; to: 30 * units.devicePixelRatio; duration: 250; easing.type: Easing.InOutQuad }
+            NumberAnimation { target: coreListTemp; property: "height"; to: 30; duration: 250; easing.type: Easing.InOutQuad }
         }
     }
 

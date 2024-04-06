@@ -6,7 +6,9 @@ A simple monitor for plasma, completely written in QML and Javascript.
 Dependencies
 ============
 
-- Plasma 5 (Plasma Shell) (better use Plasma >= 5.10 with plasmoid autoresize fix)
+- Plasma 6 (Plasma Shell)
+- plasma5support package
+- lm_sensors
 
 ### Extra Dependencies For CMake ###
 
