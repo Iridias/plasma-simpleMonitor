@@ -78,8 +78,8 @@ KCM.SimpleKCM {
 
                 SpinBox {
                     id: indicatorHeightSpinBox
-                    minimumValue: 1
-                    maximumValue: 99
+                    from: 1
+                    to: 99
                     Layout.row: 2
                     Layout.column: 1
                 }
@@ -107,11 +107,9 @@ KCM.SimpleKCM {
 
                 SpinBox {
                     id: updateIntervalSpinBox
-                    decimals: 1
-                    stepSize: 0.1
-                    minimumValue: 0.1
-                    maximumValue: 10.0
-                    suffix: i18nc('Abbreviation for seconds', 's')
+                    stepSize: 1
+                    from: 1
+                    to: 10
                 }
             }
         }
